@@ -7,5 +7,16 @@
  */
 
 var firstNonRepeatedCharacter = function(string) {
-  // TODO: your solution here
+  let letterCount = {};
+  for (let i = 0; i < string.length; i++) {
+    let currChar = string[i];
+    letterCount[currChar] === undefined ? letterCount[currChar] = 1 : letterCount[currChar]++;
+  }
+  let singles = [];
+  for (let key in letterCount) {
+    if (letterCount[key] === 1) {
+      singles.push(key);
+    }
+  }
+    return singles[0];
 };
