@@ -10,8 +10,12 @@
  * Extra credit: Extend your function to handle more than two input strings.
  */
 
-
-
 var commonCharacters = function(string1, string2) {
-  // TODO: Your code here!
+  let common = '';
+  for (let a = 0; a < string1.length; a++) {
+  	if (string2.includes(string1[a])) {
+  	  common += string1[a];
+  	}
+  }
+  return common;
 };
