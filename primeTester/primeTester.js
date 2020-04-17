@@ -9,6 +9,11 @@ var primeTester = function(n) {
     // n isn't a number or n is less than 1 or n is not an integer
     return false;
   }
+  for (let x = n-1; x > 1; x--) {
+    if (Number.isInteger(n / x)) {
+      return false;
+    }
+  } return true;
   // TODO: return true if n is prime, false otherwise
 };
 
@@ -19,6 +24,10 @@ var primeTester = function(n) {
  */
 
 var primeSieve = function (start, end) {
+  let primes = [];
+  for (let s = start; s <= end; s++) {
+    if (primeTester(s)) {
+      primes.push(s);
+    }
+  } return primes;
 };
-
-
