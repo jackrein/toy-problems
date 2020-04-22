@@ -4,12 +4,19 @@
  * Return null if there are no even-occurrence items.
 */
 
-/*
- * example usage:
- * var onlyEven = evenOccurrence([1, 7, 2, 4, 5, 6, 8, 9, 6, 4]);
- * console.log(onlyEven); //  4
-*/
-
 var evenOccurrence = function(arr) {
-  // Your code here.
+  let counts = {};
+  for (let n = 0; n < arr.length; n++) {
+  	let currChar = arr[n];
+    counts[currChar] = !counts[currChar];
+  }
+
+  for (let e = 0; e < arr.length; e++) {
+    if (!counts[arr[e]]) {
+      return arr[e];
+    }
+  }
+  return null;
 };
+
+evenOccurrence([5, 5, 2, 1, 3, 3]);
