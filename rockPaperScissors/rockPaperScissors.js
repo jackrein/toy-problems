@@ -18,8 +18,20 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
-};
+var rockPaperScissors = roundCount => {
+  if (roundCount === 0) return []
+  const permutations = []
+  function playRound(plays){
+	if (plays.length === roundCount) {
+	  permutations.push(plays)
+	  return
+	}
+	['R', 'P', 'S'].forEach(play => {
+	  playRound(plays + play)
+	})
+  }
+  playRound('')
+  return permutations
+}
 
+rockPaperScissors(3);
