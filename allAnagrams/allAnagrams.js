@@ -13,5 +13,18 @@
   */
 
 var allAnagrams = function(string) {
-  // Your code here.
+  let anagrams = {};
+  let addLtr = function(text, opts) {
+    if (text.length === string.length) {
+      anagrams[text] = true;
+    }
+    for (let i = 0; i < opts.length; i++) {
+      addLtr(text + opts[i],
+        opts.slice(0, i) + opts.slice(i+1))
+    }
+  }
+  addLtr('', string);
+  return Object.keys(anagrams);
 };
+
+console.log(allAnagrams('abc'));
