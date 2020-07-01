@@ -1,5 +1,4 @@
 /*jshint expr:true*/
-
 /*
  * Bubble sort is the most basic sorting algorithm in all of Computer
  * Sciencedom. It works by starting at the first element of an array and
@@ -27,12 +26,26 @@
 /*
  * Example usage:
  * bubbleSort([2, 1, 3]); // yields [1, 2, 3]
- *
 */
 
 // Feel free to add helper functions if needed.
 
-
-var bubbleSort = function(array) {
-  // Your code here.
+var bubbleSort = (array) => {
+  let swaps = true;
+  for (let i = 0; i < array.length - 1 && swaps === true; i++) {
+    swaps = false;
+  // iterate over array
+    for (let j = 0; j < array.length-1-i; j++) {
+    // compare 1st and 2nd elements
+      if (array[j] > array[j+1]) {
+        swaps = true;
+        [array[j], array[j+1]] = [array[j+1], array[j]];
+      }
+      console.log(array, swaps);
+    }
+  };
+  // return array
+  return array;
 };
+
+console.log(bubbleSort([6, 2, 1, 4, 3]));
