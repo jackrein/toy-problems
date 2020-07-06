@@ -13,8 +13,6 @@
  *
  * A stable sort must return `{value: 5, order: 1}, {value:5, order: 2}` in that order.
  *
- * ---
- *
  * EXTRA CREDIT:
  *
  * Refactor your sort to (optionally) take an explicit comparator function
@@ -29,24 +27,43 @@
  * If no comparator is given, just sort the elements using `<` or `>`.
  **/
 
-// Example usage:
-// insertionSort([{value: 2}, {value: 1}, {value: 3}]);
-// yields [{value: 1}, {value: 2}, {value: 3}]
-
 // This function is to help you test, and should not be incorporated in your solution.
 // It will transform an array of numbers into an array of valid objects.
 var testingTransform = function(array) {
   var transform = [];
-  
-  for (var i = 0; i < array.length; i++) {
-    transform.push({value: array[i], i: i});
+  let i = 1;
+  while (array.length > 0) {
+    let cut = array.splice(0, 1);
+    console.log('cut', cut[0]);
+    console.log('array', array);
+    if (array.includes(cut[0])) {
+      console.log('transform', transform);
+      transform.push({value: cut[0].value, order: i});
+      i++;
+    }
+    else {transform.push(cut[0])};
   }
+
+  transform.sort((a, b) => (a.value > b.value) ? 1 : (a.value === b.value) ? ((a.order > b.order) ? 1 : -1) : -1 );
 
   return transform;
 };
 
-var insertionSort = function(array
-) {
+var insertionSort = function(array) {
   // Your code goes here. Feel free to add helper functions if needed.
-  return array;
+
+  // for (let i = 0; i < array.length; i++) {
+  //   let val = array[i];
+  //   let hole = i;
+  //   while (hole && val < array[hole-1]) {
+  //     array[hole] = array[hole-1];
+  //     hole--;
+  //   }
+  //   array[hole] = val;
+  // }
+
+  return testingTransform(array);
+  // return array;
 };
+
+console.log(insertionSort([{value: 2}, {value: 1}, {value: 3}, {value: 1}]));
