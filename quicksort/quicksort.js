@@ -12,4 +12,17 @@
 
 
 var quicksort = function(array) {
+  if (array.length < 2) return array;
+  let pivot = array[Math.floor(array.length / 2)];
+  let left = [], right = [];
+  array.forEach(element => {
+    if (element < pivot) left.push(element)
+    if (element > pivot) right.push(element)
+  });
+  left = quicksort(left);
+  right = quicksort(right);
+  let sorted = left.concat(pivot, right);
+  return sorted;
 };
+
+console.log(quicksort([2, 6, 1, 4, 3]));
