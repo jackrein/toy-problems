@@ -30,6 +30,7 @@
  *
  *   Done! Return the sorted array:
  *   [1,2,3,4,4,7,9]
+ * 
  * Illustration of a recursive approach:
  *
  *   1. Split the input array in half
@@ -74,12 +75,10 @@
  *   As you can see, all the work actually gets done in step 3, the merge
  *   step. Everything else is just splitting and recursing.
  *
- *
  * Complexity:
  *   What is the complexity of your algorithm in time and space?
  *   The merge step can be implemented using what is conceptually an insertion sort, and yet its time
  *   complexity is (spoiler alert!) much lower. Why is that?
- *
  *
  * Extra credit:
  *   One of the benefits of mergesort over e.g. quicksort is that it is "stable"; assuming the merge
@@ -95,8 +94,25 @@
  *
  */
 
-
+var merge = (left, right) => {
+  let i = 0, j = 0, result = [];
+  while (i < left.length && j < right.length) {
+    if (left[i] <= right[j]) {
+      result.push(left[i++]);
+    } else {
+      result.push(right[j++]);
+    }
+  }
+  var remainder = i === left.length ? right.slice(j) : left.slice(i);
+  return result.concat(remainder);
+}
 
 var mergeSort = function(array) {
-  // Your code here.
+  if (array.length < 2) return array;
+  let half = Math.floor(array.length/2);
+  let left = array.slice(0, half);
+  let right = array.slice(half);
+  return merge(mergeSort(left), mergeSort(right));
 };
+
+console.log(mergeSort([4,7,4,3,9,1,2]));

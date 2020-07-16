@@ -21,8 +21,7 @@ var quicksort = function(array) {
   });
   left = quicksort(left);
   right = quicksort(right);
-  let sorted = left.concat(pivot, right);
-  return sorted;
+  return left.concat(pivot, right);
 };
 
 console.log(quicksort([2, 6, 1, 4, 3]));
