@@ -43,7 +43,25 @@
  *  - Make your function accept a parameter for the direction of rotation (1 = clockwise, -1 = counterclockwise)
  */
 
-var rotateMatrix = function(matrix
-) {
-  // Your code here.
+var rotateMatrix = function(matrix, direction) {
+  const flipMatrix = matrix => (
+    matrix[0].map((column, index) => (
+      matrix.map(row => row[index])
+    ))
+  );
+  if (direction > 0) {
+    return flipMatrix(matrix.reverse());
+  } else {
+    let flippedMatrix = flipMatrix(matrix);
+    return flippedMatrix.reverse();
+  }
 };
+
+var matrix = [
+  [1,2,3,4],
+  [5,6,7,8],
+  [9,'A','B','C'],
+  ['D','E','F','G']
+];
+
+console.log(rotateMatrix(matrix, -1));
